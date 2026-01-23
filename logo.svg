@@ -1,0 +1,41 @@
+<svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Elegant perfume bottle silhouette -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F4E4C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C5A572;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Perfume bottle cap -->
+  <rect x="55" y="15" width="20" height="8" rx="2" fill="url(#goldGradient)" filter="url(#glow)"/>
+
+  <!-- Perfume bottle neck -->
+  <rect x="58" y="23" width="14" height="12" fill="url(#goldGradient)"/>
+
+  <!-- Perfume bottle body -->
+  <path d="M 50 35 L 50 70 Q 50 75 55 75 L 75 75 Q 80 75 80 70 L 80 35 Z"
+        fill="none" stroke="url(#goldGradient)" stroke-width="2.5" opacity="0.9"/>
+
+  <!-- Inner liquid -->
+  <path d="M 52 55 L 52 70 Q 52 73 55 73 L 75 73 Q 78 73 78 70 L 78 55 Z"
+        fill="url(#goldGradient)" opacity="0.3"/>
+
+  <!-- Brand name PUREN -->
+  <text x="110" y="55" font-family="'Playfair Display', Georgia, serif"
+        font-size="42" font-weight="300" letter-spacing="8"
+        fill="url(#goldGradient)" filter="url(#glow)">PUREN</text>
+
+  <!-- Tagline -->
+  <text x="112" y="72" font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="10" font-weight="300" letter-spacing="3"
+        fill="#8B7355" opacity="0.8">ESSENCE OF LUXURY</text>
+</svg>
