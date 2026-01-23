@@ -25,6 +25,8 @@ if 'quiz_results' not in st.session_state:
     st.session_state.quiz_results = None
 if 'cart' not in st.session_state:
     st.session_state.cart = []
+if 'selected_product' not in st.session_state:
+    st.session_state.selected_product = None
 
 # Luxury color palette
 COLORS = {
