@@ -1,13 +1,13 @@
 // Product Data
 const PRODUCTS = [
-    { id: 1, name: 'Mystic Rose', price: 295, category: 'Floral', mood: 'Romantic', image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400', description: 'A timeless blend of Bulgarian rose and oud wood.' },
-    { id: 2, name: 'Velvet Noir', price: 325, category: 'Oriental', mood: 'Mysterious', image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400', description: 'Dark, sensual, and captivating. A sophisticated blend.' },
-    { id: 3, name: 'Citrus Symphony', price: 245, category: 'Citrus', mood: 'Fresh', image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59cfc?w=400', description: 'A vibrant celebration of Mediterranean citrus groves.' },
-    { id: 4, name: 'Ocean Breeze', price: 265, category: 'Aquatic', mood: 'Clean', image: 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400', description: 'Experience the crisp, refreshing essence of coastal winds.' },
-    { id: 5, name: 'Golden Amber', price: 350, category: 'Amber', mood: 'Warm', image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400', description: 'Warm, luxurious, and utterly captivating.' },
-    { id: 6, name: 'Ethereal Bloom', price: 280, category: 'Floral', mood: 'Light', image: 'https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400', description: 'A delicate dance of white petals in the morning dew.' },
-    { id: 7, name: 'Spice Caravan', price: 310, category: 'Spicy', mood: 'Bold', image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400', description: 'An exotic journey through ancient spice markets.' },
-    { id: 8, name: 'Lunar Garden', price: 340, category: 'Floral', mood: 'Mystical', image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=400', description: 'Night-blooming jasmine under a silver moon.' }
+    { id: 1, name: 'Mystic Rose', price: 29500, category: 'Floral', mood: 'Romantic', image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400', description: 'A timeless blend of Bulgarian rose and oud wood.' },
+    { id: 2, name: 'Velvet Noir', price: 32500, category: 'Oriental', mood: 'Mysterious', image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400', description: 'Dark, sensual, and captivating. A sophisticated blend.' },
+    { id: 3, name: 'Citrus Symphony', price: 24500, category: 'Citrus', mood: 'Fresh', image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59cfc?w=400', description: 'A vibrant celebration of Mediterranean citrus groves.' },
+    { id: 4, name: 'Ocean Breeze', price: 26500, category: 'Aquatic', mood: 'Clean', image: 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400', description: 'Experience the crisp, refreshing essence of coastal winds.' },
+    { id: 5, name: 'Golden Amber', price: 35000, category: 'Amber', mood: 'Warm', image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400', description: 'Warm, luxurious, and utterly captivating.' },
+    { id: 6, name: 'Ethereal Bloom', price: 28000, category: 'Floral', mood: 'Light', image: 'https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400', description: 'A delicate dance of white petals in the morning dew.' },
+    { id: 7, name: 'Spice Caravan', price: 31000, category: 'Spicy', mood: 'Bold', image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400', description: 'An exotic journey through ancient spice markets.' },
+    { id: 8, name: 'Lunar Garden', price: 34000, category: 'Floral', mood: 'Mystical', image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=400', description: 'Night-blooming jasmine under a silver moon.' }
 ];
 
 const NOTES = {
@@ -70,7 +70,7 @@ function renderProducts(products) {
             <div class="product-info">
                 <span class="product-category">${p.category}</span>
                 <h3>${p.name}</h3>
-                <p class="product-price">$${p.price}</p>
+                <p class="product-price">₹${p.price.toLocaleString('en-IN')}</p>
             </div>
         </div>
     `).join('');
@@ -184,7 +184,8 @@ function updateBlendPreview() {
     document.getElementById('preview-base').textContent = customBlend.base.join(', ') || 'Base';
     
     const count = customBlend.top.length + customBlend.middle.length + customBlend.base.length;
-    blendPrice.textContent = `$${count * 50 + 100}`;
+    const price = (count * 50 + 100) * 100;
+    blendPrice.textContent = `₹${price.toLocaleString('en-IN')}`;
 }
 
 // Cart Functions
@@ -194,7 +195,8 @@ function setupCart() {
         addBlendBtn.addEventListener('click', () => {
             const count = customBlend.top.length + customBlend.middle.length + customBlend.base.length;
             if (count === 0) return alert('Select some notes first!');
-            addToCart({ name: 'Custom Blend', price: count * 50 + 100 });
+            const price = (count * 50 + 100) * 100;
+            addToCart({ name: 'Custom Blend', price: price });
             // Reset blend
             customBlend = { top: [], middle: [], base: [] };
             updateBlendPreview();
@@ -224,7 +226,7 @@ window.openProductModal = (id) => {
                 <h2>${p.name}</h2>
                 <div class="gold-divider" style="margin: 20px 0;"></div>
                 <p style="margin-bottom: 20px;">${p.description}</p>
-                <p class="product-price">$${p.price}</p>
+                <p class="product-price">₹${p.price.toLocaleString('en-IN')}</p>
                 <button class="cta-btn" style="margin-top: 20px;" onclick="addToCart(${p.id})">Add to Cart</button>
             </div>
         </div>
